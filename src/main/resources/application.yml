@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://47.96.13.85:3306/jarvis?useSSL=true
-    username: jarvis
-    password: Jarvis@1234
+    url: jdbc:mysql://47.96.13.85:3306/test?useSSL=true
+    username: test
+    password: Test@1234
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
