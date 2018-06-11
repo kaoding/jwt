@@ -25,9 +25,9 @@ public class AuditorAwareConfig implements AuditorAware<String> {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
-            return null;
+            return Optional.of("");
         }
-
-        return Optional.of(((JwtUser) authentication.getPrincipal()).getUsername());
+        JwtUser jwtUser = authentication.getPrincipal() instanceof JwtUser ? ((JwtUser) authentication.getPrincipal()) : null;
+        return Optional.of(jwtUser != null ? jwtUser.getUsername() : "");
     }
 }

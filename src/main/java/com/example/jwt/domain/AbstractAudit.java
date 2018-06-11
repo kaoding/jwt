@@ -1,6 +1,5 @@
 package com.example.jwt.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
@@ -16,7 +15,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * AbstractAuditingEntity
+ * AbstractAudit
  *
  * @author lijiehua
  * @date 2018-06-10
@@ -24,7 +23,7 @@ import java.util.Date;
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AbstractAuditingEntity implements Serializable {
+public abstract class AbstractAudit implements Serializable {
     /**
      * 创建时间
      */

@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-public class Device extends AbstractAuditingEntity {
+public class Device extends AbstractAudit {
     @Id
     private String id;
 

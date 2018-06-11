@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Data
 @Entity
-public class Role extends AbstractAuditingEntity {
+public class Role extends AbstractAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

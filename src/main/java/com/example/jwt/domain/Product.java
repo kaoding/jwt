@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Data
 @Entity
-public class Product extends AbstractAuditingEntity {
+public class Product extends AbstractAudit {
     @Id
     private String id;
 
