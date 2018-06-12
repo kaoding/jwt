@@ -33,6 +33,7 @@ public class ProductController {
         return repository.findAll();
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
     public Product get(@PathVariable("id") String id) {
         if (repository.existsById(id)) {
@@ -42,6 +43,7 @@ public class ProductController {
         }
     }
 
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") String id) {
         if (repository.existsById(id)) {
