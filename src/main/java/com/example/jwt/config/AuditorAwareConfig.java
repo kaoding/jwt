@@ -1,7 +1,7 @@
 package com.example.jwt.config;
 
 
-import com.example.jwt.security.JwtUser;
+import com.example.jwt.security.jwt.JwtUser;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

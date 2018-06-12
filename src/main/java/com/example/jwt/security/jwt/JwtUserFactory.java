@@ -1,4 +1,4 @@
-package com.example.jwt.security;
+package com.example.jwt.security.jwt;
 
 import com.example.jwt.domain.Role;
 import com.example.jwt.domain.User;

@@ -1,5 +1,8 @@
 package com.example.jwt.security;
 
+import com.example.jwt.security.jwt.JwtAccessDeniedHandler;
+import com.example.jwt.security.jwt.JwtAuthenticationEntryPoint;
+import com.example.jwt.security.jwt.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -43,15 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${jwt.exceptUrl}")
     private String exceptUrl;
 
-    @Autowired
-    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder
-                // 设置UserDetailsService
-                .userDetailsService(this.userDetailsService)
-                // 使用BCrypt进行密码的hash
-                .passwordEncoder(passwordEncoderBean());
-    }
-
     @Bean
     public PasswordEncoder passwordEncoderBean() {
         // 装载BCrypt密码编码器
@@ -65,8 +59,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                // 设置UserDetailsService
+                .userDetailsService(this.userDetailsService)
+                // 使用BCrypt进行密码的hash
+                .passwordEncoder(passwordEncoderBean());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
                 // 由于使用的是JWT，我们这里不需要csrf
                 .csrf().disable()
                 // 基于token，所以不需要session
@@ -91,10 +94,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().cacheControl();
 
         // 将token验证添加在密码验证前面
-        httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         // 未授权、拒绝访问(权限不够)处理
-        httpSecurity.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).accessDeniedHandler(jwtAccessDeniedHandler);
+        http.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).accessDeniedHandler(jwtAccessDeniedHandler);
     }
 }
 

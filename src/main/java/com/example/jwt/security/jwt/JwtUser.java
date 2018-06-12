@@ -1,4 +1,4 @@
-package com.example.jwt.security;
+package com.example.jwt.security.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

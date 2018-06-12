@@ -1,4 +1,4 @@
-package com.example.jwt.security;
+package com.example.jwt.security.auth;
 
 import com.example.jwt.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
