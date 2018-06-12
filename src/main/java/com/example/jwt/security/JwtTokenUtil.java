@@ -111,6 +111,18 @@ public class JwtTokenUtil implements Serializable {
     }
 
     /**
+     * 验证token
+     *
+     * @param token
+     * @param userDetails
+     * @return 是否有效
+     */
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        String username = getUsernameFromToken(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    /**
      * 刷新token
      *
      * @param token
@@ -126,19 +138,6 @@ public class JwtTokenUtil implements Serializable {
             refreshedToken = null;
         }
         return refreshedToken;
-    }
-
-    /**
-     * 验证token
-     *
-     * @param token
-     * @param userDetails
-     * @return 是否有效
-     */
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        JwtUser user = (JwtUser) userDetails;
-        String username = getUsernameFromToken(token);
-        return (username.equals(user.getUsername()) && !isTokenExpired(token));
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.example.jwt.security;
 
-import com.example.jwt.security.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,7 +37,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader(this.tokenHeader);
@@ -56,5 +54,4 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-
 }

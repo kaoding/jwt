@@ -5,7 +5,6 @@ import com.example.jwt.repository.RoleRepository;
 import com.example.jwt.security.JwtTokenUtil;
 import com.example.jwt.domain.User;
 import com.example.jwt.repository.UserRepository;
-import com.example.jwt.security.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;

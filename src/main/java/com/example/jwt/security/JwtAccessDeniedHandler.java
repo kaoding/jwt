@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * JwtAccessDeniedHandler
@@ -17,16 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 
     /**
-     * 拒绝访问(权限不够)
-     *
+     * 拒绝访问 403
      * @param request
      * @param response
      * @param accessDeniedException
+     * @throws IOException
      */
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setStatus(403);
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
+        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden");
     }
 
 }
